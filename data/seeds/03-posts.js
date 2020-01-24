@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise) {
     {
       user_id: 2,
       text:
-        " N-nothing important. That is, I heard a great deal about a ring, a Dark Lord, and something about the end of the world, but... Please, Mr. Gandalf, sir, don't hurt me. Don't turn me into anything... unnatural.",
+        "N-nothing important. That is, I heard a great deal about a ring, a Dark Lord, and something about the end of the world, but... Please, Mr. Gandalf, sir, don't hurt me. Don't turn me into anything... unnatural.",
     }, // 8
     { user_id: 3, text: 'Well, that rules you out, Pip.' }, // 9
     { user_id: 4, text: "We've had one yes. What about second breakfast?" }, // 10
@@ -62,7 +62,7 @@ exports.seed = function(knex, Promise) {
     {
       user_id: 5,
       text:
-        ' Fool of a Took! Throw yourself in next time and rid us of your stupidity!',
+        'Fool of a Took! Throw yourself in next time and rid us of your stupidity!',
     }, // 21
     {
       user_id: 6,

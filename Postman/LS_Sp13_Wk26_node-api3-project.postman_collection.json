@@ -1,0 +1,2923 @@
+{
+	"info": {
+		"_postman_id": "c15ebeb4-97fa-4586-8b07-358dd99c4c70",
+		"name": "LS_Sp13_Wk26_node-api3-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "POST /api/users (missing name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b6bd3b5-3913-4ebd-937c-93f56dae29a5",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Failure', () => {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(res.success).to.equal(false);",
+									"});",
+									"",
+									"pm.test('Data Size', () => {",
+									"    pm.expect(res.user).to.be.undefined;",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.errorMessage).to.equal(\"Missing required name field!\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST /api/users (missing name)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-0idyk5dCyfogTeXYawsknkTzHfs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 11:11:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Missing required name field!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /api/users (valid)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "84d20fc1-f559-4506-8cda-8c9c242e8369",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(201);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.user.id).to.be.at.least(10);",
+									"});",
+									"",
+									"//Store generated user ID for reuse in subsequent tests",
+									"var uid = res.user.id;",
+									"pm.collectionVariables.set(\"UserID\", uid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test User\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST /api/users (valid)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Test User\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-GDjBwAzHAeH4rKtukleqzZID9iU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 12:11:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"user\": {\n        \"id\": 10,\n        \"name\": \"Test User\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /api/users/:id/posts (missing text)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "436b995e-3b63-41da-a602-8b971eaeb864",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Failure', () => {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(res.success).to.equal(false);",
+									"});",
+									"",
+									"pm.test('Data Size', () => {",
+									"    pm.expect(res.post).to.be.undefined;",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.errorMessage).to.equal(\"Missing required text field!\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST /api/users/:id/posts (missing text)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}",
+										"posts"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-7vSveB4YYTovkd8RtclLuBOIXms\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 12:12:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Missing required text field!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /api/users/:id/posts (valid)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "436b995e-3b63-41da-a602-8b971eaeb864",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(201);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.post.id).to.be.at.least(13);",
+									"});",
+									"",
+									"//Store generated post ID for reuse in subsequent tests",
+									"var pid = res.post.id;",
+									"pm.collectionVariables.set(\"PostID\", pid);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"Test Post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST /api/users/:id/posts (valid)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"text\": \"Test Post\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}",
+										"posts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-W+db+IaYA6iEcMNpusDL8mgWiyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:11:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"post\": {\n        \"id\": 39,\n        \"text\": \"Test Post\",\n        \"user_id\": 10,\n        \"user_name\": \"Test User\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "GET /api/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1876bfc-1bcb-4802-bc06-71e8c6c921aa",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Size', () => {",
+									"    pm.expect(res.users.length).to.be.at.least(9);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.users[0].name).to.equal(\"Frodo Baggins\");",
+									"    pm.expect(res.users[1].name).to.equal(\"Samwise Gamgee\");",
+									"    pm.expect(res.users[2].name).to.equal(\"Meriadoc Brandybuck\");",
+									"    pm.expect(res.users[3].name).to.equal(\"Peregrin Took\");",
+									"    pm.expect(res.users[4].name).to.equal(\"Mithrandir\");",
+									"    pm.expect(res.users[5].name).to.equal(\"Boromir\");",
+									"    pm.expect(res.users[6].name).to.equal(\"Legolas\");",
+									"    pm.expect(res.users[7].name).to.equal(\"Gimli\");",
+									"    pm.expect(res.users[8].name).to.equal(\"Aragorn\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "321"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-BB0qVaSxWGoF0IJ8b4eYhXj3tDM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 13:59:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"users\": [\n        {\n            \"id\": 1,\n            \"name\": \"Frodo Baggins\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Samwise Gamgee\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Meriadoc Brandybuck\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Peregrin Took\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Mithrandir\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Boromir\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Legolas\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Gimli\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Aragorn\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Test User\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/users/:id (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "133dafd8-cfda-4da0-9b8a-3190d8c83402",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Failure', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(res.success).to.equal(false);",
+									"});",
+									"",
+									"pm.test('Data Size', () => {",
+									"    pm.expect(res.user).to.be.undefined;",
+									"});",
+									"",
+									"pm.test('Error Message', () => {",
+									"    pm.expect(res.errorMessage).to.equal(\"Invalid user id!\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/999",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users/:id (not found)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/999",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-NbFkt4o+mokR57dVt5KmZ+qU3qo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 12:25:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"The user with the specified ID does not exist.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/users/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a935735f-f00c-49cb-b097-afdfcc2f6613",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.user.name).to.equal(\"Test User\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users/:id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-GDjBwAzHAeH4rKtukleqzZID9iU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 12:27:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"user\": {\n        \"id\": 10,\n        \"name\": \"Test User\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/users/:id/posts (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "133dafd8-cfda-4da0-9b8a-3190d8c83402",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Failure', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(res.success).to.equal(false);",
+									"});",
+									"",
+									"pm.test('Data Size', () => {",
+									"    pm.expect(res.post).to.be.undefined;",
+									"});",
+									"",
+									"pm.test('Error Message', () => {",
+									"    pm.expect(res.errorMessage).to.equal(\"Invalid user id!\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/999/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"999",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users/:id/posts (not found)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/999/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"999",
+										"posts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-NbFkt4o+mokR57dVt5KmZ+qU3qo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 12:28:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"The user with the specified ID does not exist.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/users/:id/posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a935735f-f00c-49cb-b097-afdfcc2f6613",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.posts).to.not.be.undefined;",
+									"    var postCount = res.posts.length",
+									"    pm.expect(res.posts[postCount-1].text).to.equal(\"Test Post\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users/:id/posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5c-vArKZBuaBUqS16wz6aJmquo0ngU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:00:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"posts\": [\n        {\n            \"id\": 39,\n            \"text\": \"Test Post\",\n            \"user_id\": 10,\n            \"user_name\": \"Test User\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/posts/:id (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "133dafd8-cfda-4da0-9b8a-3190d8c83402",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Failure', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(res.success).to.equal(false);",
+									"});",
+									"",
+									"pm.test('Data Size', () => {",
+									"    pm.expect(res.post).to.be.undefined;",
+									"});",
+									"",
+									"pm.test('Error Message', () => {",
+									"    pm.expect(res.errorMessage).to.equal(\"Invalid post id!\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/999",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/users/comments/:id (not found)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/999",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-WXwoFTFvnEXrI+2b7HYBMALuzAw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 12:51:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Invalid post id!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/posts/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "133dafd8-cfda-4da0-9b8a-3190d8c83402",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.post.text).to.equal(\"Test Post\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/{{PostID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{PostID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/posts/:id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/{{PostID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"{{PostID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-W+db+IaYA6iEcMNpusDL8mgWiyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:05:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"post\": {\n        \"id\": 39,\n        \"text\": \"Test Post\",\n        \"user_id\": 10,\n        \"user_name\": \"Test User\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /api/posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "133dafd8-cfda-4da0-9b8a-3190d8c83402",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.posts[0].text).to.equal(\"I wish the ring had never come to me. I wish none of this had happened.\");",
+									"    pm.expect(res.posts[1].text).to.equal(\"I think we should get off the road. Get off the road! Quick!\");",
+									"    pm.expect(res.posts[2].text).to.equal(\"Our business is our own.\");",
+									"    pm.expect(res.posts[3].text).to.equal(\"Can you protect me from yourself?\");",
+									"    pm.expect(res.posts[4].text).to.equal(\"I ain't been droppin' no eaves, sir! Promise!\");",
+									"    pm.expect(res.posts[5].text).to.equal(\"Of course you are, and I'm coming with you!\");",
+									"    pm.expect(res.posts[6].text).to.equal(\"I made a promise, Mr Frodo. A promise. \\\"Don't you leave him Samwise Gamgee.\\\" And I don't mean to. I don't mean to.\");",
+									"    pm.expect(res.posts[7].text).to.equal(\"N-nothing important. That is, I heard a great deal about a ring, a Dark Lord, and something about the end of the world, but... Please, Mr. Gandalf, sir, don't hurt me. Don't turn me into anything... unnatural.\");",
+									"    pm.expect(res.posts[8].text).to.equal(\"Well, that rules you out, Pip.\");",
+									"    pm.expect(res.posts[9].text).to.equal(\"We've had one yes. What about second breakfast?\");",
+									"    pm.expect(res.posts[10].text).to.equal(\"You need people of intelligence on this sort of mission...quest...thing.\");",
+									"    pm.expect(res.posts[11].text).to.equal(\"A wizard is never late, Frodo Baggins. Nor is he early. He arrives precisely when he means to.\");",
+									"    pm.expect(res.posts[12].text).to.equal(\"One ring to rule them all. One ring to find them. One ring to bring them all and in the darkness bind them!\");",
+									"    pm.expect(res.posts[13].text).to.equal(\"Is it secret?! Is it safe?!\");",
+									"    pm.expect(res.posts[14].text).to.equal(\"A Balrog. A demon of the ancient world. This foe is beyond any of you. Run!\");",
+									"    pm.expect(res.posts[15].text).to.equal(\"When in doubt, follow your nose.\");",
+									"    pm.expect(res.posts[16].text).to.equal(\"YOU SHALL NOT PASS!\");",
+									"    pm.expect(res.posts[17].text).to.equal(\"Fly you fools!\");",
+									"    pm.expect(res.posts[18].text).to.equal(\"All you have to do is decide what to do with the time that is given to you.\");",
+									"    pm.expect(res.posts[19].text).to.equal(\"Do not be so quick to deal out death and judgement. Even the very wise do not see all ends.\");",
+									"    pm.expect(res.posts[20].text).to.equal(\"Fool of a Took! Throw yourself in next time and rid us of your stupidity!\");",
+									"    pm.expect(res.posts[21].text).to.equal(\"One does not simply walk into Mordor. Its black gates are guarded by more than just orcs. There is evil there that does not sleep. And the Great Eye, is ever watchful. It is a barren wasteland, riddled with fire, ash and dust. The very air you breathe is a poisonous fume. Not with ten thousand men could you do this. It is folly!\");",
+									"    pm.expect(res.posts[22].text).to.equal(\"It is a strange fate that we should suffer so much fear and doubt over so small a thing. Such a little thing.\");",
+									"    pm.expect(res.posts[23].text).to.equal(\"Gondor has no king, Gondor needs no king.\");",
+									"    pm.expect(res.posts[24].text).to.equal(\"Lembas! Elvish waybread. One small bite is enough to fill a stomach of a grown man.\");",
+									"    pm.expect(res.posts[25].text).to.equal(\"This is no mere Ranger. He is Aragorn, son of Arathorn. You owe him your allegiance.\");",
+									"    pm.expect(res.posts[26].text).to.equal(\"Have you heard nothing what Lord Elrond has said? The ring must be destroyed!\");",
+									"    pm.expect(res.posts[27].text).to.equal(\"Nobody tosses a Dwarf!\");",
+									"    pm.expect(res.posts[28].text).to.equal(\"I will be dead before I see the ring in the hands of an elf! Never trust an elf!\");",
+									"    pm.expect(res.posts[29].text).to.equal(\"And I suppose you think you're the one to do it!\");",
+									"    pm.expect(res.posts[30].text).to.equal(\"I have been dealt a wound beyond all healing, for I have looked the last... upon that which was fairest. Henceforth I will call nothing fair unless it be her gift to me.\");",
+									"    pm.expect(res.posts[31].text).to.equal(\"I asked for one hair from her golden head... she gave me three.\");",
+									"    pm.expect(res.posts[32].text).to.equal(\"We will not abandon Merry and Pippin to torment and death. Not while we have strength left. Leave all that can be spared behind. We travel light. Let's hunt some orc.\");",
+									"    pm.expect(res.posts[33].text).to.equal(\"You cannot wield it! None of us can! The One Ring answers to Sauron alone. It has no other master.\");",
+									"    pm.expect(res.posts[34].text).to.equal(\"You draw too much attention to yourself, 'Mister Underhill'.\");",
+									"    pm.expect(res.posts[35].text).to.equal(\"A little more caution from you, that's no trinket you carry.\");",
+									"    pm.expect(res.posts[36].text).to.equal(\"I would have gone with you to the end, into the very fires of Mordor.\");",
+									"    pm.expect(res.posts[37].text).to.equal(\"Indeed. I can avoid being seen, if I wish, but to disappear entirely, that is a rare gift.\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET /api/posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10b9-X36ZIXjAC/qNna2nu76nceLzZMc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:02:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"posts\": [\n        {\n            \"id\": 1,\n            \"text\": \"I wish the ring had never come to me. I wish none of this had happened.\",\n            \"user_id\": 1\n        },\n        {\n            \"id\": 2,\n            \"text\": \"I think we should get off the road. Get off the road! Quick!\",\n            \"user_id\": 1\n        },\n        {\n            \"id\": 3,\n            \"text\": \"Our business is our own.\",\n            \"user_id\": 1\n        },\n        {\n            \"id\": 4,\n            \"text\": \"Can you protect me from yourself?\",\n            \"user_id\": 1\n        },\n        {\n            \"id\": 5,\n            \"text\": \"I ain't been droppin' no eaves, sir! Promise!\",\n            \"user_id\": 2\n        },\n        {\n            \"id\": 6,\n            \"text\": \"Of course you are, and I'm coming with you!\",\n            \"user_id\": 2\n        },\n        {\n            \"id\": 7,\n            \"text\": \"I made a promise, Mr Frodo. A promise. \\\"Don't you leave him Samwise Gamgee.\\\" And I don't mean to. I don't mean to.\",\n            \"user_id\": 2\n        },\n        {\n            \"id\": 8,\n            \"text\": \"N-nothing important. That is, I heard a great deal about a ring, a Dark Lord, and something about the end of the world, but... Please, Mr. Gandalf, sir, don't hurt me. Don't turn me into anything... unnatural.\",\n            \"user_id\": 2\n        },\n        {\n            \"id\": 9,\n            \"text\": \"Well, that rules you out, Pip.\",\n            \"user_id\": 3\n        },\n        {\n            \"id\": 10,\n            \"text\": \"We've had one yes. What about second breakfast?\",\n            \"user_id\": 4\n        },\n        {\n            \"id\": 11,\n            \"text\": \"You need people of intelligence on this sort of mission...quest...thing.\",\n            \"user_id\": 4\n        },\n        {\n            \"id\": 12,\n            \"text\": \"A wizard is never late, Frodo Baggins. Nor is he early. He arrives precisely when he means to.\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 13,\n            \"text\": \"One ring to rule them all. One ring to find them. One ring to bring them all and in the darkness bind them!\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 14,\n            \"text\": \"Is it secret?! Is it safe?!\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 15,\n            \"text\": \"A Balrog. A demon of the ancient world. This foe is beyond any of you. Run!\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 16,\n            \"text\": \"When in doubt, follow your nose.\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 17,\n            \"text\": \"YOU SHALL NOT PASS!\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 18,\n            \"text\": \"Fly you fools!\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 19,\n            \"text\": \"All you have to do is decide what to do with the time that is given to you.\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 20,\n            \"text\": \"Do not be so quick to deal out death and judgement. Even the very wise do not see all ends.\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 21,\n            \"text\": \"Fool of a Took! Throw yourself in next time and rid us of your stupidity!\",\n            \"user_id\": 5\n        },\n        {\n            \"id\": 22,\n            \"text\": \"One does not simply walk into Mordor. Its black gates are guarded by more than just orcs. There is evil there that does not sleep. And the Great Eye, is ever watchful. It is a barren wasteland, riddled with fire, ash and dust. The very air you breathe is a poisonous fume. Not with ten thousand men could you do this. It is folly!\",\n            \"user_id\": 6\n        },\n        {\n            \"id\": 23,\n            \"text\": \"It is a strange fate that we should suffer so much fear and doubt over so small a thing. Such a little thing.\",\n            \"user_id\": 6\n        },\n        {\n            \"id\": 24,\n            \"text\": \"Gondor has no king, Gondor needs no king.\",\n            \"user_id\": 6\n        },\n        {\n            \"id\": 25,\n            \"text\": \"Lembas! Elvish waybread. One small bite is enough to fill a stomach of a grown man.\",\n            \"user_id\": 7\n        },\n        {\n            \"id\": 26,\n            \"text\": \"This is no mere Ranger. He is Aragorn, son of Arathorn. You owe him your allegiance.\",\n            \"user_id\": 7\n        },\n        {\n            \"id\": 27,\n            \"text\": \"Have you heard nothing what Lord Elrond has said? The ring must be destroyed!\",\n            \"user_id\": 7\n        },\n        {\n            \"id\": 28,\n            \"text\": \"Nobody tosses a Dwarf!\",\n            \"user_id\": 8\n        },\n        {\n            \"id\": 29,\n            \"text\": \"I will be dead before I see the ring in the hands of an elf! Never trust an elf!\",\n            \"user_id\": 8\n        },\n        {\n            \"id\": 30,\n            \"text\": \"And I suppose you think you're the one to do it!\",\n            \"user_id\": 8\n        },\n        {\n            \"id\": 31,\n            \"text\": \"I have been dealt a wound beyond all healing, for I have looked the last... upon that which was fairest. Henceforth I will call nothing fair unless it be her gift to me.\",\n            \"user_id\": 8\n        },\n        {\n            \"id\": 32,\n            \"text\": \"I asked for one hair from her golden head... she gave me three.\",\n            \"user_id\": 8\n        },\n        {\n            \"id\": 33,\n            \"text\": \"We will not abandon Merry and Pippin to torment and death. Not while we have strength left. Leave all that can be spared behind. We travel light. Let's hunt some orc.\",\n            \"user_id\": 9\n        },\n        {\n            \"id\": 34,\n            \"text\": \"You cannot wield it! None of us can! The One Ring answers to Sauron alone. It has no other master.\",\n            \"user_id\": 9\n        },\n        {\n            \"id\": 35,\n            \"text\": \"You draw too much attention to yourself, 'Mister Underhill'.\",\n            \"user_id\": 9\n        },\n        {\n            \"id\": 36,\n            \"text\": \"A little more caution from you, that's no trinket you carry.\",\n            \"user_id\": 9\n        },\n        {\n            \"id\": 37,\n            \"text\": \"I would have gone with you to the end, into the very fires of Mordor.\",\n            \"user_id\": 9\n        },\n        {\n            \"id\": 38,\n            \"text\": \"Indeed. I can avoid being seen, if I wish, but to disappear entirely, that is a rare gift.\",\n            \"user_id\": 9\n        },\n        {\n            \"id\": 39,\n            \"text\": \"Test Post\",\n            \"user_id\": 10\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "PUT /api/users/:id (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b849a9d-5d2f-4e2e-8525-e98fabc2ebd1",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Status: 404 Not Found', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(pm.response.status).to.equal(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"Does not exist\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid user id!\");",
+									"});",
+									"",
+									"pm.test('Success=false', () => {",
+									"    pm.expect(res.success).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test User Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/999",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT /api/users/:id (not found)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Test User Updated\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/999",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-hNW+/Wpt1ai7DasYj0CKrjkC7WE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:13:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Invalid user id!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT /api/users/:id (missing name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "afa213a4-8aad-44b4-baa1-50a06be4fe81",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Status: 400 Bad Request', () => {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(pm.response.status).to.equal(\"Bad Request\");",
+									"});",
+									"",
+									"pm.test(\"Does not exist\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Missing required name field!\");",
+									"});",
+									"",
+									"pm.test('Success=false', () => {",
+									"    pm.expect(res.success).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT /api/users/:id (missing name)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-0idyk5dCyfogTeXYawsknkTzHfs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:15:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Missing required name field!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT /api/users/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7c0b18-8c9b-4035-a568-56f7abaf3129",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.userIdUpdated).to.equal(pm.collectionVariables.get('UserID'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test User Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT /api/users/:id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Test User Updated\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-ETyTFnd9W9JiO9qZaKlJEjtfWM8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:19:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"userIdUpdated\": 10\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT /api/posts/:id (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b849a9d-5d2f-4e2e-8525-e98fabc2ebd1",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Status: 404 Not Found', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(pm.response.status).to.equal(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"Does not exist\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid post id!\");",
+									"});",
+									"",
+									"pm.test('Success=false', () => {",
+									"    pm.expect(res.success).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"Test Post Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/999",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT /api/posts/:id (not found)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"text\": \"Test Post Updated\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/999",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-WXwoFTFvnEXrI+2b7HYBMALuzAw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:33:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Invalid post id!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT /api/posts/:id (missing text)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d5cd2b5-aadf-4cc7-8d92-abc722298c14",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Status: 400 Bad Request', () => {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(pm.response.status).to.equal(\"Bad Request\");",
+									"});",
+									"",
+									"pm.test(\"Does not exist\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Missing required text field!\");",
+									"});",
+									"",
+									"pm.test('Success=false', () => {",
+									"    pm.expect(res.success).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/{{PostID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{PostID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT /api/posts/:id (missing text)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/{{PostID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"{{PostID}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-7vSveB4YYTovkd8RtclLuBOIXms\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:34:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Missing required text field!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT /api/posts/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba7c0b18-8c9b-4035-a568-56f7abaf3129",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.postIdUpdated).to.equal(pm.collectionVariables.get('PostID'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\": \"Test Post Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/{{PostID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{PostID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT /api/posts/:id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"text\": \"Test Post Updated\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/{{PostID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"{{PostID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-ZeljDqMHtGIhVvm0VlOljCFeb04\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:37:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"postIdUpdated\": 39\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "DELETE /api/posts/:id (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a76ad4c8-5756-43a8-a71d-98c639ad7158",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Status: 404 Not Found', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(pm.response.status).to.equal(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"Does not exist\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid post id!\");",
+									"});",
+									"",
+									"pm.test('Success=false', () => {",
+									"    pm.expect(res.success).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/999",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE /api/posts/:id (not found)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/999",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-WXwoFTFvnEXrI+2b7HYBMALuzAw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:38:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Invalid post id!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE /api/posts/:id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9412206e-ff39-4881-a557-4eb1e3307710",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff5472e0-ad9e-406b-84d4-0b1cd9ac8bec",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.postIdRemoved).to.equal(pm.collectionVariables.get('PostID'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/{{PostID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"{{PostID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE /api/posts/:id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/{{PostID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"{{PostID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-aUckLQHuS6APQ0Mq1l7Yx77ZlCY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:38:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"postIdRemoved\": 39\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE /api/users/:id (not found)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a76ad4c8-5756-43a8-a71d-98c639ad7158",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Status: 404 Not Found', () => {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(pm.response.status).to.equal(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"Does not exist\", () => {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid user id!\");",
+									"});",
+									"",
+									"pm.test('Success=false', () => {",
+									"    pm.expect(res.success).to.be.false;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/999",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"999"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE /api/users/:id (not found)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/999",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-hNW+/Wpt1ai7DasYj0CKrjkC7WE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:21:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"errorMessage\": \"Invalid user id!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE /api/users/:id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9412206e-ff39-4881-a557-4eb1e3307710",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff5472e0-ad9e-406b-84d4-0b1cd9ac8bec",
+								"exec": [
+									"var res = pm.response.json();",
+									"",
+									"pm.test('Success', () => {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(res.success).to.equal(true);",
+									"});",
+									"",
+									"pm.test('Data Value(s)', () => {",
+									"    pm.expect(res.userIdRemoved).to.equal(pm.collectionVariables.get('UserID'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/{{UserID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{UserID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE /api/users/:id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/users/{{UserID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"{{UserID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-sMXH5mgBjrXKdZTaFFCMVxoQCKM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2020 14:22:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"userIdRemoved\": 10\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "81005885-9980-4e6e-b9bf-0043d8f3b03c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d4f0b23e-bbbf-4e4e-9654-506bc8e3d5e8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a327b3e0-66c9-48f2-838f-86f1153b9b4b",
+			"key": "UserID",
+			"value": 10,
+			"type": "number"
+		},
+		{
+			"id": "c6e7b0e5-d274-46d3-ac80-0fe2ed5bc2a8",
+			"key": "PostID",
+			"value": 39,
+			"type": "number"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
