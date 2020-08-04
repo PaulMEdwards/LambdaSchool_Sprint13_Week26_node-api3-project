@@ -1,13 +1,24 @@
 const express = require('express');
 
 const server = express();
-
-server.get('/', (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`);
-});
+server.use(express.json());
 
 //custom middleware
 
-function logger(req, res, next) {}
+const logger = require('./middleware/logger');
+
+server.use(logger);
+
+const readme = require('./readme');
+
+server.get('/', (req, res) => {
+  res.send(readme);
+});
+
+const userRouter = require('./users/userRouter.js');
+server.use('/api/users', userRouter);
+
+const postRouter = require('./posts/postRouter.js');
+server.use('/api/posts', postRouter);
 
 module.exports = server;
